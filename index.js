@@ -1,13 +1,11 @@
-var path = require('path');
+var tmp = require('tmp');
 
 module.exports = function testCanSymlink (options) {
   options = options || {};
   var fs = options.fs || require('fs');
-  var os = options.os || require('os');
-  var tmpdir = os.tmpdir();
 
-  var canLinkSrc  = path.join(tmpdir, "canLinkSrc.tmp")
-  var canLinkDest = path.join(tmpdir, "canLinkDest.tmp")
+  var canLinkSrc  = tmp.tmpNameSync();
+  var canLinkDest = tmp.tmpNameSync();
 
   try {
     fs.writeFileSync(canLinkSrc, '');
