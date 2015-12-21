@@ -1,6 +1,6 @@
 {
   "name": "can-symlink",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Utility module to determine if fs.symlink commands will succeed. Useful for win32 enviornments where special permission is required for symlinking.",
   "repository": "https://github.com/raytiley/can-symlink",
   "main": "index.js",
