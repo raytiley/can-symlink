@@ -16,6 +16,10 @@
   "bin": {
     "can-symlink": "./can-symlink.js"
   },
+  "files": [
+    "index.js",
+    "can-symlink.js"
+  ],
   "devDependencies": {
     "mocha": "^2.1.0"
   },
