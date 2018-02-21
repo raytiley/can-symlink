@@ -1,27 +1,27 @@
-var tmp = require('tmp');
+var tmp = require("tmp");
 
-module.exports = function testCanSymlink (options) {
+module.exports = function testCanSymlink(options) {
   options = options || {};
-  var fs = options.fs || require('fs');
+  var fs = options.fs || require("fs");
 
-  var canLinkSrc  = tmp.tmpNameSync();
+  var canLinkSrc = tmp.tmpNameSync();
   var canLinkDest = tmp.tmpNameSync();
 
   try {
-    fs.writeFileSync(canLinkSrc, '');
+    fs.writeFileSync(canLinkSrc, "");
   } catch (e) {
-    return false
+    return false;
   }
 
   try {
-    fs.symlinkSync(canLinkSrc, canLinkDest)
+    fs.symlinkSync(canLinkSrc, canLinkDest);
   } catch (e) {
-    fs.unlinkSync(canLinkSrc)
-    return false
+    fs.unlinkSync(canLinkSrc);
+    return false;
   }
 
-  fs.unlinkSync(canLinkSrc)
-  fs.unlinkSync(canLinkDest)
+  fs.unlinkSync(canLinkSrc);
+  fs.unlinkSync(canLinkDest);
 
-  return true
-}
+  return true;
+};
