@@ -6,9 +6,11 @@ describe("can-symlink", function() {
     var options = {
       fs: {
         symlinkSync: function() {},
-        writeFileSync: function() {},
+        mkdirSync: function() {},
+        rmdirSync: function() {},
         unlinkSync: function() {}
-      }
+      },
+      forceTest: true
     };
 
     assert.equal(canSymlink(options), true);
@@ -20,11 +22,21 @@ describe("can-symlink", function() {
         symlinkSync: function() {
           throw Error("Symlink failed");
         },
-        writeFileSync: function() {},
+        mkdirSync: function() {},
+        rmdirSync: function() {},
         unlinkSync: function() {}
-      }
+      },
+      forceTest: true
     };
 
     assert.equal(canSymlink(options), false);
+  });
+
+  it("works on the real file-system", function() {
+    let result = canSymlink({ forceTest: true });
+    // On win32 we only care that we do not get an exception
+    if (process.platform !== "win32") {
+      assert.equal(result, true);
+    }
   });
 });
